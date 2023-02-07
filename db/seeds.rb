@@ -7,11 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do
- 
-  # Review.create(review: Faker::Creature::Animal.name)
+  BeerStyle.create!(style: Faker::Beer.style)
+  Brewery.create!(name: (Faker::Coffee.intensifier + ' ' + Faker::Hipster.word + ' ' +  Faker::Hipster.word), state: Faker::Address.state)
+  User.create!(username: Faker::Creature::Animal.name, password_digest: Faker::Barcode.upc_a)
 end
 
-# Beer.create(name: Faker::Creature::Animal.name, abv: Faker::Beer.alcohol, beer_style_id: 1)
-# Brewery.create(name: (Faker::Creature::Animal.name + ' ' Faker::Creature::Animal.name) )
+10.times do
+  Beer.create!(name:Faker::Hipster.word + ' ' + Faker::Creature::Animal.name, abv: Faker::Beer.alcohol, beer_style_id: Faker::Number.within(range: 1..10), brewery_id: Faker::Number.within(range: 1..10))
+end
+
+10.times do
+  Review.create!(rating: Faker::Number.within(range: 1..5), review: Faker::Coffee.notes, beer_id: Faker::Number.within(range: 1..10), user_id: Faker::Number.within(range: 1..10))
+end
+
 
 
