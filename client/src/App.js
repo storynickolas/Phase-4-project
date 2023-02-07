@@ -5,20 +5,26 @@ import { List } from 'semantic-ui-react'
 import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Beer from './Beer';
+import Navbar from './Navbar';
 
 function App() {
-  const [page, setPage] = useState('beers')
+  const [page, setPage] = useState('/beers')
   const [options, setOptions] = useState([])
 
 
   useEffect(() => {
-    fetch(`http://localhost:4000/${page}`)
+    fetch(`http://localhost:4000${page}`)
       .then((r) => r.json())
       .then((data) => handlingTest(data))
-  }, [page])
+  }, [page, ])
 
   const handlingTest = (data) => {
     setOptions(data)
+  }
+
+
+  const handlePage = (newPage) => {
+    setPage(newPage)
   }
 
 
@@ -32,7 +38,7 @@ function App() {
           )}
 
         </List>
-
+        <Navbar handlePage={handlePage}/>
       </header>
       <BrowserRouter>
           <Switch>
