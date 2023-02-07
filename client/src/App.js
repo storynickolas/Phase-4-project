@@ -3,10 +3,11 @@ import './App.css';
 import { Header } from 'semantic-ui-react'
 import { List } from 'semantic-ui-react'
 import React, { useEffect, useState } from 'react';
-// import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
+import Beer from './Beer';
 
 function App() {
-  const [page, setPage] = useState('breweries')
+  const [page, setPage] = useState('beers')
   const [options, setOptions] = useState([])
 
 
@@ -33,6 +34,14 @@ function App() {
         </List>
 
       </header>
+      <BrowserRouter>
+          <Switch>
+             <Route exact path="/beers">
+              <Beer />
+            </Route>
+        
+            </Switch>
+         </BrowserRouter>
     </div>
   );
 }
