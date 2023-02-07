@@ -8,7 +8,7 @@
 
 10.times do
   BeerStyle.create!(style: Faker::Beer.style)
-  Brewery.create!(name: (Faker::Coffee.intensifier + ' ' + Faker::Hipster.word + ' ' +  Faker::Hipster.word), state: Faker::Address.state)
+  Brewery.create!(name: (Faker::Verb.ing_form+ ' ' + Faker::Hipster.word), state: Faker::Address.state)
   User.create!(username: Faker::Creature::Animal.name, password_digest: Faker::Barcode.upc_a)
 end
 
