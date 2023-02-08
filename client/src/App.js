@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Beer from './Beer';
 import Navbar from './Navbar';
+import BeerStyles from './BeerStyles';
 
 function App() {
   const [page, setPage] = useState('/beers')
@@ -44,6 +45,9 @@ function App() {
           <Switch>
              <Route exact path="/beers">
               <Beer />
+            </Route>
+            <Route exact path="/beerstyles">
+              <BeerStyles />
             </Route>
         
             </Switch>
