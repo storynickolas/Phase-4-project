@@ -33,15 +33,15 @@ function App() {
     <div className="App">
       <header className="App-header">
       <Header as='h1' color='orange'>Beer List</Header>
-        <List bulleted>
-          {options.map((item) => 
-          <List.Item key={item.id}>{item.name}</List.Item>
-          )}
-
-        </List>
         <Navbar handlePage={handlePage}/>
       </header>
-      <BrowserRouter>
+      <List bulleted>
+          {options.map((item) => Object.values(item).map((value) => 
+          <List.Item key={value}>{value}</List.Item>
+          ))}
+
+        </List>
+      {/* <BrowserRouter>
           <Switch>
              <Route exact path="/beers">
               <Beer />
@@ -51,7 +51,7 @@ function App() {
             </Route>
         
             </Switch>
-         </BrowserRouter>
+         </BrowserRouter> */}
     </div>
   );
 }
