@@ -31,27 +31,27 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-      <Header as='h1' color='orange'>Beer List</Header>
-        <Navbar handlePage={handlePage}/>
-      </header>
-      <List bulleted>
+      {/* <List bulleted>
           {options.map((item) => Object.values(item).map((value) => 
           <List.Item key={value}>{value}</List.Item>
           ))}
 
-        </List>
-      {/* <BrowserRouter>
+        </List> */}
+      <BrowserRouter>
+      <header className="App-header">
+      <Header as='h1' color='orange'>Beer List</Header>
+      <Navbar handlePage={handlePage}/>
+      </header>
           <Switch>
              <Route exact path="/beers">
-              <Beer />
+              <Beer options={options}/>
             </Route>
             <Route exact path="/beerstyles">
-              <BeerStyles />
+              <BeerStyles options={options}/>
             </Route>
         
             </Switch>
-         </BrowserRouter> */}
+         </BrowserRouter>
     </div>
   );
 }
