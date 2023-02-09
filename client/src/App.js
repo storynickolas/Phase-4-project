@@ -8,6 +8,8 @@ import Beer from './Beer';
 import Navbar from './Navbar';
 import BeerStyles from './BeerStyles';
 
+import { Container } from 'semantic-ui-react'
+
 function App() {
   const [page, setPage] = useState('/beers')
   const [options, setOptions] = useState([])
@@ -38,20 +40,22 @@ function App() {
 
         </List> */}
       <BrowserRouter>
-      <header className="App-header">
-      <Header as='h1' color='orange'>Beer List</Header>
-      <Navbar handlePage={handlePage}/>
-      </header>
+        <header className='header'>
+          <Header as='h1' color='orange'>Beer List</Header>
+          <Navbar handlePage={handlePage}/>
+        </header>
           <Switch>
-             <Route exact path="/beers">
+            <Route exact path="/beers">
               <Beer options={options}/>
             </Route>
             <Route exact path="/beerstyles">
               <BeerStyles options={options}/>
             </Route>
-        
-            </Switch>
-         </BrowserRouter>
+            <Route exact path="/beerstyles">
+              <BeerStyles options={options}/>
+            </Route>
+          </Switch>
+      </BrowserRouter>
     </div>
   );
 }
