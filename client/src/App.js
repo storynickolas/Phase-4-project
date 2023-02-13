@@ -10,6 +10,7 @@ import BeerStyles from './BeerStyles';
 
 import { Container } from 'semantic-ui-react'
 
+
 function App() {
   const [page, setPage] = useState('/beers')
   const [options, setOptions] = useState([])
@@ -40,7 +41,7 @@ function App() {
 
         </List> */}
       <BrowserRouter>
-        <header className='header'>
+        <header className='headertest'>
           <Header as='h1' color='orange'>Beer List</Header>
           <Navbar handlePage={handlePage}/>
         </header>
