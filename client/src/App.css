@@ -18,6 +18,22 @@
   background-size: cover;
 }
 
+.test3 {
+  background-image: url("https://images.pexels.com/photos/5530253/pexels-photo-5530253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 1000px;
+}
+
+.test4 {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  min-height: 150px;
+  max-width: 80%;
+  margin-left: 10%;
+  padding-top: 10%;
+}
+
 .test2 {
   background-color: black;
   color: white;

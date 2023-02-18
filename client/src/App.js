@@ -7,8 +7,11 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Beer from './Beer';
 import Navbar from './Navbar';
 import BeerStyles from './BeerStyles';
+import Home from './Home';
 
 import { Container } from 'semantic-ui-react'
+import Breweries from './Breweries';
+import Reviews from './Reviews';
 
 
 function App() {
@@ -46,11 +49,17 @@ function App() {
           <Navbar handlePage={handlePage}/>
         </header>
           <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
             <Route exact path="/beers">
               <Beer options={options}/>
             </Route>
-            <Route exact path="/beerstyles">
-              <BeerStyles options={options}/>
+            <Route exact path="/reviews">
+              <Reviews options={options}/>
+            </Route>
+            <Route exact path="/breweries">
+              <Breweries options={options}/>
             </Route>
             <Route exact path="/beerstyles">
               <BeerStyles options={options}/>
