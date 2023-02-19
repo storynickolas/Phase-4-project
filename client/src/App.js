@@ -65,9 +65,6 @@ function App() {
             <Route exact path='/beers/:id'>
               <Beer special={special}/>
             </Route>
-            <Route exact path="/reviews">
-              <Reviews options={options}/>
-            </Route>
             <Route exact path="/breweries">
               <Breweries options={options}/>
             </Route>
