@@ -16,6 +16,7 @@
 .test {
   background-image: url("Lights.jpg");
   background-size: cover;
+  padding-bottom: 20px;
 }
 
 .test3 {
@@ -37,10 +38,18 @@
 .test2 {
   background-color: black;
   color: white;
+  padding: 10px;
+}
+
+.test7 {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border: none;
 }
 
 .headertest {
-  background-color: black;
+  background-color: 	rgb(64,64,64);
   background-size: 100% auto;
   min-height: 150px;
   display: flex;

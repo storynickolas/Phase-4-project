@@ -4,10 +4,11 @@ import { Header } from 'semantic-ui-react'
 import { List } from 'semantic-ui-react'
 import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
-import Beer from './Beer';
+import BeerList from './BeerList';
 import Navbar from './Navbar';
 import BeerStyles from './BeerStyles';
 import Home from './Home';
+import Beer from './Beer'
 
 import { Container } from 'semantic-ui-react'
 import Breweries from './Breweries';
@@ -17,6 +18,7 @@ import Reviews from './Reviews';
 function App() {
   const [page, setPage] = useState('/beers')
   const [options, setOptions] = useState([])
+  const [special, setSpecial] = useState([])
 
 
   useEffect(() => {
@@ -32,6 +34,11 @@ function App() {
 
   const handlePage = (newPage) => {
     setPage(newPage)
+  }
+
+  const handleClick = (item) => {
+    console.log(item)
+    setSpecial(item)
   }
 
 
@@ -53,7 +60,10 @@ function App() {
               <Home />
             </Route>
             <Route exact path="/beers">
-              <Beer options={options}/>
+              <BeerList options={options} handleClick={handleClick}/>
+            </Route>
+            <Route exact path='/beers/:id'>
+              <Beer special={special}/>
             </Route>
             <Route exact path="/reviews">
               <Reviews options={options}/>
