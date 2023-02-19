@@ -10,15 +10,17 @@ import BeerStyles from './BeerStyles';
 import Home from './Home';
 import Beer from './Beer'
 
-import { Container } from 'semantic-ui-react'
+import { Container, Button, Menu } from 'semantic-ui-react'
 import Breweries from './Breweries';
 import Reviews from './Reviews';
+import LoginForm from './Login';
 
 
 function App() {
   const [page, setPage] = useState('/beers')
   const [options, setOptions] = useState([])
   const [special, setSpecial] = useState([])
+  const [loggedIn, setLoggedIn] = useState(false)
 
 
   useEffect(() => {
@@ -53,11 +55,14 @@ function App() {
       <BrowserRouter>
         <header className='headertest'>
           <Header as='h1' color='orange'>Beer List</Header>
-          <Navbar handlePage={handlePage}/>
+          <Navbar handlePage={handlePage} loggedIn={loggedIn}/>
         </header>
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/login">
+              <LoginForm />
             </Route>
             <Route exact path="/beers">
               <BeerList options={options} handleClick={handleClick}/>
