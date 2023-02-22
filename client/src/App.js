@@ -9,11 +9,13 @@ import Navbar from './Navbar';
 import BeerStyles from './BeerStyles';
 import Home from './Home';
 import Beer from './Beer'
+import Login from './Login';
 
 import { Container, Button, Menu } from 'semantic-ui-react'
 import Breweries from './Breweries';
 import Reviews from './Reviews';
-import LoginForm from './Login';
+
+import SignUp from './SignUp';
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
   const [options, setOptions] = useState([])
   const [special, setSpecial] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState(null);
 
 
   useEffect(() => {
@@ -43,6 +46,19 @@ function App() {
     setSpecial(item)
   }
 
+  const test = (item) => {
+    console.log(item)
+  }
+
+  const confirmUser = (item) => {
+    setUser(item)
+  }
+
+  const logOut = (item) => {
+    setUser(item)
+
+  }
+
 
   return (
     <div className="App">
@@ -55,17 +71,20 @@ function App() {
       <BrowserRouter>
         <header className='headertest'>
           <Header as='h1' color='orange'>Beer List</Header>
-          <Navbar handlePage={handlePage} loggedIn={loggedIn}/>
+          <Navbar handlePage={handlePage} user={user} logOut={logOut}/>
         </header>
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
+            <Route exact path="/signup">
+              <SignUp confirmUser={confirmUser}/>
+            </Route>
             <Route exact path="/login">
-              <LoginForm />
+              <Login onLogin={confirmUser}/>
             </Route>
             <Route exact path="/beers">
-              <BeerList options={options} handleClick={handleClick}/>
+              <BeerList options={options} handleClick={handleClick} user={user} />
             </Route>
             <Route exact path='/beers/:id'>
               <Beer special={special}/>

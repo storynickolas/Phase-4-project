@@ -17,13 +17,15 @@
   background-image: url("Lights.jpg");
   background-size: cover;
   padding-bottom: 20px;
+  min-height: 85vh;
 }
 
 .test3 {
   background-image: url("https://images.pexels.com/photos/5530253/pexels-photo-5530253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 1000px;
+  min-height: 85vh;
+  /* min-height: 1000px; */
 }
 
 .test4 {
