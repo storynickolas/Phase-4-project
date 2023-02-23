@@ -81,7 +81,7 @@ function App() {
               <SignUp confirmUser={confirmUser}/>
             </Route>
             <Route exact path="/login">
-              <Login onLogin={confirmUser}/>
+              <Login onLogin={confirmUser} user={user} logOut={logOut}/>
             </Route>
             <Route exact path="/beers">
               <BeerList options={options} handleClick={handleClick} user={user} />
