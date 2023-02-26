@@ -51,7 +51,7 @@
 }
 
 .headertest {
-  background-color: 	rgb(64,64,64);
+  background-color: 	black;
   background-size: 100% auto;
   min-height: 150px;
   display: flex;

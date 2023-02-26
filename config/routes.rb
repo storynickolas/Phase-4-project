@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   get "/users", to: "users#index"
   delete "/logout", to: "sessions#destroy"
 
+  get "/styles", to: "beers#style"
+
   resources :users, only: [:index, :create, :destroy]
 end

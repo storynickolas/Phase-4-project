@@ -6,14 +6,16 @@ import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import BeerList from './BeerList';
 import Navbar from './Navbar';
-import BeerStyles from './BeerStyles';
+import BeerStyle from './BeerStyle';
+import Style from './Style';
+
 import Home from './Home';
 import Beer from './Beer'
 import Login from './Login';
 
+
 import { Container, Button, Menu } from 'semantic-ui-react'
-import Breweries from './Breweries';
-import Reviews from './Reviews';
+
 
 import SignUp from './SignUp';
 
@@ -70,7 +72,7 @@ function App() {
         </List> */}
       <BrowserRouter>
         <header className='headertest'>
-          <Header as='h1' color='orange'>Beer List</Header>
+          <h1 color='white'>Beer List</h1>
           <Navbar handlePage={handlePage} user={user} logOut={logOut}/>
         </header>
           <Switch>
@@ -89,11 +91,11 @@ function App() {
             <Route exact path='/beers/:id'>
               <Beer special={special}/>
             </Route>
-            <Route exact path="/breweries">
-              <Breweries options={options}/>
-            </Route>
             <Route exact path="/beerstyles">
-              <BeerStyles options={options}/>
+              <BeerStyle options={options} handleClick={handleClick}/>
+            </Route>
+            <Route exact path='/beerstyles/:id'>
+              <Style special={special}/>
             </Route>
           </Switch>
       </BrowserRouter>
