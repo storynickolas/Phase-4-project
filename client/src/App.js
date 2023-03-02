@@ -12,6 +12,10 @@ import Style from './Style';
 import Home from './Home';
 import Beer from './Beer'
 import Login from './Login';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCats } from "./Redux/counter"
+import { fetchTypes } from "./Redux/type"
+
 
 
 import { Container, Button, Menu } from 'semantic-ui-react'
@@ -26,6 +30,19 @@ function App() {
   const [special, setSpecial] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null);
+
+  const catPics = useSelector((state) => state.counter);
+  console.log(catPics)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCats());
+    dispatch(fetchTypes());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(fetchTypes());
+  // }, [dispatch]);
 
 
   useEffect(() => {
@@ -70,9 +87,12 @@ function App() {
           ))}
 
         </List> */}
-      <BrowserRouter>
+        
+      {/* <BrowserRouter> */}
+
         <header className='headertest'>
           <h1 color='white'>Beer List</h1>
+          <h1>The Count is: </h1>
           <Navbar handlePage={handlePage} user={user} logOut={logOut}/>
         </header>
           <Switch>
@@ -89,17 +109,20 @@ function App() {
               <BeerList options={options} handleClick={handleClick} user={user} />
             </Route>
             <Route exact path='/beers/:id'>
-              <Beer special={special}/>
+              <Beer special={special} handlingTest={handlingTest} options={options}/>
             </Route>
             <Route exact path="/beerstyles">
               <BeerStyle options={options} handleClick={handleClick}/>
             </Route>
             <Route exact path='/beerstyles/:id'>
-              <Style special={special}/>
+              <Style special={special} handleClick={handleClick}/>
             </Route>
           </Switch>
-      </BrowserRouter>
+          
+
+
     </div>
+
   );
 }
 

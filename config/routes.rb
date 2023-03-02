@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
 
   resources :reviews
-  resources :beer_styles
   resources :beers
   resources :breweries
   # Routing logic: fallback requests for React Router.
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/styles", to: "beers#style"
+  get "/styles/:style", to: "beers#beers"
 
   resources :users, only: [:index, :create, :destroy]
 end
