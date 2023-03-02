@@ -13,7 +13,7 @@ import Home from './Home';
 import Beer from './Beer'
 import Login from './Login';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCats } from "./Redux/counter"
+import { fetchBrews } from "./Redux/brews"
 import { fetchTypes } from "./Redux/type"
 
 
@@ -25,48 +25,21 @@ import SignUp from './SignUp';
 
 
 function App() {
-  const [page, setPage] = useState('/beers')
-  const [options, setOptions] = useState([])
   const [special, setSpecial] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null);
 
-  const catPics = useSelector((state) => state.counter);
-  console.log(catPics)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCats());
+    dispatch(fetchBrews());
     dispatch(fetchTypes());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(fetchTypes());
-  // }, [dispatch]);
-
-
-  useEffect(() => {
-    fetch(`http://localhost:4000${page}`)
-      .then((r) => r.json())
-      .then((data) => handlingTest(data))
-  }, [page, ])
-
-  const handlingTest = (data) => {
-    setOptions(data)
-  }
-
-
-  const handlePage = (newPage) => {
-    setPage(newPage)
-  }
 
   const handleClick = (item) => {
     console.log(item)
     setSpecial(item)
-  }
-
-  const test = (item) => {
-    console.log(item)
   }
 
   const confirmUser = (item) => {
@@ -81,19 +54,10 @@ function App() {
 
   return (
     <div className="App">
-      {/* <List bulleted>
-          {options.map((item) => Object.values(item).map((value) => 
-          <List.Item key={value}>{value}</List.Item>
-          ))}
-
-        </List> */}
-        
-      {/* <BrowserRouter> */}
 
         <header className='headertest'>
           <h1 color='white'>Beer List</h1>
-          <h1>The Count is: </h1>
-          <Navbar handlePage={handlePage} user={user} logOut={logOut}/>
+          <Navbar user={user} logOut={logOut}/>
         </header>
           <Switch>
             <Route exact path="/">
@@ -106,13 +70,13 @@ function App() {
               <Login onLogin={confirmUser} user={user} logOut={logOut}/>
             </Route>
             <Route exact path="/beers">
-              <BeerList options={options} handleClick={handleClick} user={user} />
+              <BeerList handleClick={handleClick} user={user} />
             </Route>
             <Route exact path='/beers/:id'>
-              <Beer special={special} handlingTest={handlingTest} options={options}/>
+              <Beer special={special}  />
             </Route>
             <Route exact path="/beerstyles">
-              <BeerStyle options={options} handleClick={handleClick}/>
+              <BeerStyle handleClick={handleClick}/>
             </Route>
             <Route exact path='/beerstyles/:id'>
               <Style special={special} handleClick={handleClick}/>
