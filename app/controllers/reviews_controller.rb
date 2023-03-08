@@ -26,6 +26,16 @@ class ReviewsController < ApplicationController
       # end
     end
 
+    def update
+      review = Review.find_by(id: params[:id])
+      # if spice
+        review.update(review_params)
+        render json: spice
+      # else
+      #   render_not_found_response
+      # end
+    end
+
     private
     # all methods below here are private
   

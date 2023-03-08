@@ -10,6 +10,7 @@ function Login({ onLogin, user, logOut }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -31,7 +32,7 @@ function Login({ onLogin, user, logOut }) {
 
   return (
   <Grid textAlign='center' verticalAlign='middle' className='test'>
-    {user ?  <MyPage logOut={logOut} /> :
+    {user ?  <MyPage logOut={logOut} user={user} /> :
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='white' textAlign='center'>
         {/* <Image src='/logo.png' />  */}

@@ -16,18 +16,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchBrews } from "./Redux/brews"
 import { fetchTypes } from "./Redux/type"
 
+import { useHistory } from 'react-router-dom'
+
 
 
 import { Container, Button, Menu } from 'semantic-ui-react'
 
 
 import SignUp from './SignUp';
+import MyPage from './MyPage';
 
 
 function App() {
   const [special, setSpecial] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null);
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -44,11 +49,12 @@ function App() {
 
   const confirmUser = (item) => {
     setUser(item)
+    history.push(`/mypage`);
   }
 
   const logOut = (item) => {
     setUser(item)
-
+    history.push(`/`);
   }
 
 
@@ -73,13 +79,16 @@ function App() {
               <BeerList handleClick={handleClick} user={user} />
             </Route>
             <Route exact path='/beers/:id'>
-              <Beer special={special}  />
+              <Beer special={special} user={user} />
             </Route>
             <Route exact path="/beerstyles">
               <BeerStyle handleClick={handleClick}/>
             </Route>
             <Route exact path='/beerstyles/:id'>
               <Style special={special} handleClick={handleClick}/>
+            </Route>
+            <Route exact path='/mypage'>
+              <MyPage logOut={logOut} user={user}/>
             </Route>
           </Switch>
           

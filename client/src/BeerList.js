@@ -23,7 +23,15 @@ function BeerList({ handleClick }) {
               <Card key={uuid()}>
                 <div className='test2'>
                 <button className='test7' onClick={() => handleClick(item)}><Link to={`/beers/${beers.indexOf(item) + 1}`} style={{ color: 'white' }}><h3>{item.name}</h3></Link></button>
-                </div>
+               
+      
+               
+               
+               
+               
+               
+               
+               </div>
               </Card>)}
           </Card.Group>
 
