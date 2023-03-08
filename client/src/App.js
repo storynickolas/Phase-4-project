@@ -9,12 +9,14 @@ import Navbar from './Navbar';
 import BeerStyle from './BeerStyle';
 import Style from './Style';
 
+
 import Home from './Home';
 import Beer from './Beer'
 import Login from './Login';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBrews } from "./Redux/brews"
 import { fetchTypes } from "./Redux/type"
+
 
 import { useHistory } from 'react-router-dom'
 
@@ -31,6 +33,8 @@ function App() {
   const [special, setSpecial] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null);
+
+  const [selected, setSelected] = useState();
 
   const history = useHistory();
 
@@ -55,6 +59,11 @@ function App() {
   const logOut = (item) => {
     setUser(item)
     history.push(`/`);
+  }
+  const handleEdit = (item) => {
+    console.log(item)
+    history.push(`/reviews/${item.id}/edit`);
+    setSelected(item)
   }
 
 
@@ -88,7 +97,7 @@ function App() {
               <Style special={special} handleClick={handleClick}/>
             </Route>
             <Route exact path='/mypage'>
-              <MyPage logOut={logOut} user={user}/>
+              <MyPage logOut={logOut} user={user} handleEdit={handleEdit}/>
             </Route>
           </Switch>
           

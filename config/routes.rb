@@ -16,5 +16,8 @@ Rails.application.routes.draw do
   get "/styles", to: "beers#style"
   get "/styles/:style", to: "beers#beers"
 
+
+  patch "/reviews/:id", to: "reviews#update"
+
   resources :users, only: [:index, :create, :destroy]
 end

@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
       review = Review.find_by(id: params[:id])
       # if spice
         review.update(review_params)
-        render json: spice
+        render json: review
       # else
       #   render_not_found_response
       # end
