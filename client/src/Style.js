@@ -26,35 +26,27 @@ function Style({handleClick, special}) {
                 <div className='test2'>
                 <h1>{special.style}</h1>
                 </div>
-
-
-
         </Card>
         <Card>
         <div className='test2'>
         <h3>Beers</h3>
-
           </div>
-     
-
         </Card>
         {result.length > 0 ? result.map((item) => 
                   <Card><div className='test2' key={item.id}>
                     <button className='test7' onClick={() => handleClick(item)}><Link to={`/beers/${options.indexOf(item) + 1}`} style={{ color: 'white' }}><h3>{item.name}</h3></Link></button>
                   </div></Card>) : ''}
-        
- 
         </Card.Group>
         <Link to={`/beerstyles`} style={{ color: 'white' }}>
       <Button 
        color='black'
       >Return to Beer Styles</Button></Link>
-
-      
       </Grid.Column>
       <Grid.Column floated='right'>
-    <img className='beers' src='https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt='beers'/>
-
+        <img className='beers' 
+          src='https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
+          alt='beers'
+        />
       </Grid.Column>
     </Grid.Row>
     </Grid>

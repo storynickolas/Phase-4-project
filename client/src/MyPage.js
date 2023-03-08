@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import { v4 as uuid } from "uuid";
 import { Link } from 'react-router-dom';
 
+import { useHistory } from 'react-router-dom'
+
 function MyPage({ logOut, user }) {
   const [myBeers, setMyBeers] = useState([])
   const [form, setForm] = useState(true)
@@ -16,6 +18,8 @@ function MyPage({ logOut, user }) {
   const [rate, setRate] = useState()
 
   const [cow, setCow] = useState()
+
+  const history = useHistory();
 
 
   const { beers } = useSelector((state) => state.brew)
@@ -31,6 +35,7 @@ function MyPage({ logOut, user }) {
         logOut(null);
       }
     });
+    history.push(`/`);
   }
 
   function handleName(e) {

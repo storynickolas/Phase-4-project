@@ -2,10 +2,7 @@ import React from 'react';
 import { Header } from 'semantic-ui-react'
 import { Card, Segment, Button, Grid, Image } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
-
-
 
 function BeerStyle({ handleClick }) {
 
@@ -25,7 +22,9 @@ function BeerStyle({ handleClick }) {
             {type.map((item) => 
               <Card key={uuid()}>
                 <div className='test2'>
-                <button className='test7' onClick={() => handleClick(item)}><Link to={`/beerstyles/${type.indexOf(item) + 1}`} style={{ color: 'white' }}><h3>{item.style}</h3></Link></button>
+                <button className='test7' onClick={() => handleClick(item, type)}>
+                    <h3>{item.style}</h3>
+                  </button>
                 </div>
               </Card>)}
           </Card.Group>

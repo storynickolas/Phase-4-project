@@ -20,11 +20,6 @@ import { fetchTypes } from "./Redux/type"
 
 import { useHistory } from 'react-router-dom'
 
-
-
-import { Container, Button, Menu } from 'semantic-ui-react'
-
-
 import SignUp from './SignUp';
 import MyPage from './MyPage';
 
@@ -45,10 +40,17 @@ function App() {
     dispatch(fetchTypes());
   }, [dispatch]);
 
+  const handleStyle = (item, type) => {
+    console.log(item)
+    setSpecial(item)
+    history.push(`/beerstyles/${type.indexOf(item) + 1}`);
+  }
+
 
   const handleClick = (item) => {
     console.log(item)
     setSpecial(item)
+    history.push(`/beers/${item.id}`);
   }
 
   const confirmUser = (item) => {
@@ -69,7 +71,6 @@ function App() {
 
   return (
     <div className="App">
-
         <header className='headertest'>
           <h1 color='white'>Beer List</h1>
           <Navbar user={user} logOut={logOut}/>
@@ -91,7 +92,7 @@ function App() {
               <Beer special={special} user={user} />
             </Route>
             <Route exact path="/beerstyles">
-              <BeerStyle handleClick={handleClick}/>
+              <BeerStyle handleClick={handleStyle}/>
             </Route>
             <Route exact path='/beerstyles/:id'>
               <Style special={special} handleClick={handleClick}/>
@@ -100,11 +101,7 @@ function App() {
               <MyPage logOut={logOut} user={user} handleEdit={handleEdit}/>
             </Route>
           </Switch>
-          
-
-
     </div>
-
   );
 }
 

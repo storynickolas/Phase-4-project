@@ -53,30 +53,6 @@ function Beer({special, user}) {
       });
   }
 
-  // function handleDelete(id) {
-  //   fetch(`http://localhost:4000/reviews/${id}`, {
-  //     method: "DELETE",
-  //   }).then((r) => {
-  //     if (r.ok) {
-  //       console.log('test');
-  //     }
-  //   });
-  // }
-
-  // function handleEdit(id) {
-  //   setEdit(true)
-  //   console.log(id)
-  //   fetch(`/reviews/${id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ rating: newRating }),
-  //   })
-  //     .then((r) => r.json())
-  //     .then(console.log('test'));
-  // }
-
   return (
     <Grid className='test'>
     <Grid.Row columns='equal'>
@@ -95,44 +71,13 @@ function Beer({special, user}) {
               <h3>Reviews</h3>
             </div>
           </Card>
-
-          {/* {edit ?
-            <Card>
-                <div>
-                <h4>Your Review</h4>
-              <div>
-                <label>Review: </label>
-              <input defaultValue={item.review} /> 
-              </div>
-              <div>
-                <label>Rating: </label>
-                <Rating icon='star' defaultRating={3} maxRating={5} />
-              </div>
-                <Button 
-                color='black'
-                >Done
-                </Button>
-
-                </div></Card>
-                : ''} */}
-
-
-
-
             {special.reviews.length > 0 ? special.reviews.map((item) => 
-
               <Card>
                 <div className='test2' key={item.id}>
                   <h3>{item.rating}/5</h3>
                   <h3>{item.review}</h3>
-                  {/* <button onClick={() => handleDelete(item.id)}>Delete</button>
-                  <button onClick={() => handleEdit(item)}>Edit</button> */}
                 </div> 
           </Card>) : ''}
-
-
-
-
 
           {form ? <Card>
             <Button 
