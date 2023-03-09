@@ -1,21 +1,17 @@
 import React from 'react';
 import { Card, Grid } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
-import { useDispatch, useSelector } from 'react-redux'
-import { changeSelected } from './Redux/selected'
+import { useSelector } from 'react-redux'
 
 import { useHistory } from 'react-router-dom'
 
 function BeerStyle() {
   const { type } = useSelector((state) => state.type)
 
-  const dispatch = useDispatch()
-
   const history = useHistory();
 
   function handleTest(item) {
     history.push(`/beerstyles/${type.indexOf(item) + 1}`);
-    dispatch(changeSelected(item))
   }
 
   return (

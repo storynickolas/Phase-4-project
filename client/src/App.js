@@ -28,10 +28,15 @@ function App() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(fetchBrews());
     dispatch(fetchTypes());
   }, [dispatch]);
+
+
+
+
 
   const confirmUser = (item) => {
     setUser(item)

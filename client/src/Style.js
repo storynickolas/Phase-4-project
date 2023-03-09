@@ -1,26 +1,25 @@
 import { Card, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { changeSelected } from './Redux/selected'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom'
 
 function Style() {
-  const dispatch = useDispatch()
 
   const history = useHistory();
 
 
   const { beers } = useSelector((state) => state.brew)
-  const { selected } = useSelector((state) => state.selected)
+
+  let { id } = useParams();
+  const [selected] = useState(beers[id - 1])
 
   const result = beers.filter(beer => beer.style === selected.style);
 
-
   function handleTest(item) {
     history.push(`/beers/${item.id}`);
-    dispatch(changeSelected(item))
   }
 
 

@@ -1,21 +1,18 @@
 import React from 'react';
 import { Card, Grid } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
-import { useDispatch, useSelector } from 'react-redux'
-import { changeSelected } from './Redux/selected'
+import { useSelector } from 'react-redux'
 
 import { useHistory } from 'react-router-dom'
 
 
 function BeerList() {
   const { beers } = useSelector((state) => state.brew)
-  const dispatch = useDispatch()
 
   const history = useHistory();
 
   function handleTest(item) {
     history.push(`/beers/${item.id}`);
-    dispatch(changeSelected(item))
   }
 
   return (

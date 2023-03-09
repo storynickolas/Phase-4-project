@@ -3,17 +3,19 @@ import { Card, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { Rating } from 'semantic-ui-react'
+import { useParams } from 'react-router-dom';
 
 function Beer({user}) {
   const [newName, setNewName] = useState('')
   const [form, setForm] = useState(true)
+  
 
   const [rate, setRate] = useState(3)
 
   const { beers } = useSelector((state) => state.brew)
-  const { selected } = useSelector((state) => state.selected)
 
-  console.log(selected)
+  let { id } = useParams();
+  const [selected] = useState(beers[id - 1])
 
 
   function handleName(e) {
@@ -77,7 +79,8 @@ function Beer({user}) {
                   <h3>{item.rating}/5</h3>
                   <h3>{item.review}</h3>
                 </div> 
-          </Card>) : ''}
+          </Card> )
+          : ''}
 
           {form ? <Card>
             <Button 
