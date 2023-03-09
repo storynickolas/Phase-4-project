@@ -2,24 +2,34 @@ import React from 'react';
 import { Header } from 'semantic-ui-react'
 import { Card, Grid, Image } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeSelected } from './Redux/selected'
+
+import { useHistory } from 'react-router-dom'
 
 
-function BeerList({ handleClick }) {
+function BeerList() {
   const { beers } = useSelector((state) => state.brew)
+  const dispatch = useDispatch()
+
+  const history = useHistory();
+
+  function handleTest(item) {
+    history.push(`/beers/${item.id}`);
+    dispatch(changeSelected(item))
+  }
 
   return (
     
       <Grid className='test'>
         <Grid.Row columns='equal'>
           <Grid.Column floated='left'>
-            <Header as='h1' color='orange'>Beers</Header>
             <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
               {beers.map((item) => 
                 <Card key={uuid()}>
                   <div className='test2'>
-                    <button className='test7' onClick={() => handleClick(item)}>
-                        <h3>{item.name}</h3>
+                    <button className='test7' onClick={() => handleTest(item)}>
+                        <h3>{item.name.toUpperCase()}</h3>
                     </button>
                   </div>
                 </Card>)}

@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { Rating } from 'semantic-ui-react'
 
-function Beer({special, user}) {
+function Beer({user}) {
   const [newName, setNewName] = useState('')
   const [form, setForm] = useState(true)
   const [edit, setEdit] = useState(false)
   const [rate, setRate] = useState(3)
 
   const { beers } = useSelector((state) => state.brew)
+  const { selected } = useSelector((state) => state.selected)
+
+  console.log(selected)
 
 
   function handleName(e) {
@@ -34,7 +37,7 @@ function Beer({special, user}) {
     e.preventDefault();
     let formData = {
       user_id: user.id,
-      beer_id: special.id,
+      beer_id: selected.id,
       rating: rate,
       review: newName
     }
@@ -60,18 +63,18 @@ function Beer({special, user}) {
         <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
           <Card >
             <div className='test2'>
-            <h1>{special.name}</h1>
-            <h2>Beer Style: {special.style}</h2>
-            <h2>Brewery: {special.brewery}</h2>
-            <h4>ABV: {special.abv}</h4>
+            <h1>{selected.name.toUpperCase()}</h1>
+            <h2>{selected.style} </h2>
+            <h3>{selected.brewery.toUpperCase()} BREWING</h3>
+            <h4>ABV: {selected.abv}</h4>
             </div>
           </Card>
           <Card>
             <div className='test2'>
-              <h3>Reviews</h3>
+              <h1>Reviews</h1>
             </div>
           </Card>
-            {special.reviews.length > 0 ? special.reviews.map((item) => 
+            {selected.reviews.length > 0 ? selected.reviews.map((item) => 
               <Card>
                 <div className='test2' key={item.id}>
                   <h3>{item.rating}/5</h3>
@@ -88,20 +91,27 @@ function Beer({special, user}) {
             </Card>
             : 
             <Card>
+              <div className='test2'>
               <h4>Your Review</h4>
               <div>
                 <label>Review: </label>
-              <input defaultValue={'test'} onChange={handleName}/> 
+                <div className='test9'>
+              <input defaultValue={'Add a Review'} onChange={handleName}/> 
+              </div>
               </div>
               <div>
                 <label>Rating: </label>
-                <Rating icon='star' defaultRating={3} maxRating={5} onRate={handleRating} />
+                <div className='test9'>
+                  <Rating icon='star' defaultRating={3} maxRating={5} onRate={handleRating} />
+                </div>
+                
               </div>
                 <Button 
                 color='black'
                 onClick={handleSubmit}
                 >Add Review
                 </Button>
+                </div>
             </Card>}
           </Card.Group>
             <Link to={`/beers`} style={{ color: 'white' }}>

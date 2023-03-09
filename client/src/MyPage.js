@@ -91,23 +91,29 @@ function MyPage({ logOut, user }) {
 
       <Grid className='test'>
         <Grid.Row columns='equal'>
-          <Grid.Column floated='left'>
-
-          <Header as='h1' color='orange'>My Page</Header>
-          <Button inverted color='orange' onClick={() => handleLogoutClick()}>Log Out</Button> 
+          <Grid.Column floated='center'>
           <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
+          <Card>
+              <div className='test2'>
+                <h1>
+                  MY BEERS
+                </h1>
+                <Button inverted color='white' onClick={() => handleLogoutClick()}>Log Out</Button> 
+                
+                </div>
+                </Card>
           {edit ?
             t.map((item) => 
               <Card key={uuid()}>
               <div className='test2'>
-                <h3>{item.name}</h3>
+                <h2>{item.name.toUpperCase()}</h2>
                 {item.reviews.map((tool) => 
                 tool.user_id === user.id ?
                 <div>
-                <h3>{tool.rating}/5</h3>
+                <h2>{tool.rating}/5</h2>
                 <h3>{tool.review}</h3>
-                <button onClick={() => handleDelete(tool)}>Delete</button>
-                <button onClick={(e) => handleEdit(e, item, tool)}>Edit</button>
+                <Button inverted color='white' onClick={() => handleDelete(tool)}>Delete</Button> 
+                <Button inverted color='white' onClick={(e) => handleEdit(e, item, tool)}>Edit</Button> 
                 </div> : '')}
               </div>
             </Card>)

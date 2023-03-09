@@ -2,13 +2,28 @@ import React from 'react';
 import { Header } from 'semantic-ui-react'
 import { Card, Segment, Button, Grid, Image } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeSelected } from './Redux/selected'
 
-function BeerStyle({ handleClick }) {
+import { useHistory } from 'react-router-dom'
+
+function BeerStyle() {
 
 
   const { type } = useSelector((state) => state.type)
+  
   console.log(type)
+
+  const dispatch = useDispatch()
+
+  const history = useHistory();
+
+  function handleTest(item) {
+    history.push(`/beerstyles/${type.indexOf(item) + 1}`);
+    dispatch(changeSelected(item))
+  }
+
+
 
   return (
     
@@ -16,14 +31,12 @@ function BeerStyle({ handleClick }) {
       <Grid className='test'>
         <Grid.Row columns='equal'>
           <Grid.Column floated='left'>
-
-          <Header as='h1' color='orange'>Beer Styles</Header>
           <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
             {type.map((item) => 
               <Card key={uuid()}>
                 <div className='test2'>
-                <button className='test7' onClick={() => handleClick(item, type)}>
-                    <h3>{item.style}</h3>
+                <button className='test7' onClick={() => handleTest(item, type)}>
+                    <h3>{item.style.toUpperCase()}</h3>
                   </button>
                 </div>
               </Card>)}

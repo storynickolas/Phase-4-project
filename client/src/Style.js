@@ -2,19 +2,27 @@
 import { Card, Segment, Divider, Grid, Image, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeSelected } from './Redux/selected'
 
-function Style({handleClick, special}) {
-  const [options, setOptions] = useState([])
+import { useHistory } from 'react-router-dom'
+
+function Style() {
+  const dispatch = useDispatch()
+
+  const history = useHistory();
+
 
   const { beers } = useSelector((state) => state.brew)
+  const { selected } = useSelector((state) => state.selected)
 
-  console.log(special.style)
-  console.log(beers[0].style)
+  const result = beers.filter(beer => beer.style === selected.style);
 
-  const result = beers.filter(beer => beer.style === special.style);
-  
-  console.log(result)
+
+  function handleTest(item) {
+    history.push(`/beers/${item.id}`);
+    dispatch(changeSelected(item))
+  }
 
 
   return (
@@ -24,17 +32,15 @@ function Style({handleClick, special}) {
       <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
       <Card >
                 <div className='test2'>
-                <h1>{special.style}</h1>
+                <h1>{selected.style} Beers:</h1>
                 </div>
-        </Card>
-        <Card>
-        <div className='test2'>
-        <h3>Beers</h3>
-          </div>
         </Card>
         {result.length > 0 ? result.map((item) => 
                   <Card><div className='test2' key={item.id}>
-                    <button className='test7' onClick={() => handleClick(item)}><Link to={`/beers/${options.indexOf(item) + 1}`} style={{ color: 'white' }}><h3>{item.name}</h3></Link></button>
+                    <button className='test7' onClick={() => handleTest(item)}>
+                        <h2>{item.name.toUpperCase()}</h2>
+                        <h4>{item.brewery.toUpperCase()} BREWING</h4>
+                        </button>
                   </div></Card>) : ''}
         </Card.Group>
         <Link to={`/beerstyles`} style={{ color: 'white' }}>

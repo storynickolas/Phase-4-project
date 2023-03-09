@@ -7,24 +7,11 @@ export const fetchTypes = createAsyncThunk("type/fetchTypes", () => {
     .then((data) => data);
 });
 
-
-
 export const typeSlice = createSlice({
   name: 'type',
   initialState: {
-    cow: 3,
     type: []
   },
-  // reducers: {
-  //   catAdded(state, action) {
-  //     // using createSlice lets us mutate state!
-  //     state.beers.push(action.payload);
-  //   },
-  //   catUpdated(state, action) {
-  //     const cat = state.beers.find((cat) => cat.id === action.payload.id);
-  //     cat.url = action.payload.url;
-  //   },
-  // },
   extraReducers: {
     // handle async actions: pending, fulfilled, rejected (for errors)
     [fetchTypes.pending](state) {
@@ -36,8 +23,5 @@ export const typeSlice = createSlice({
     },
   }
 })
-
-// Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = typeSlice.actions
 
 export default typeSlice.reducer
