@@ -1,6 +1,5 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react'
-import { Card, Grid, Image } from 'semantic-ui-react'
+import { Card, Grid } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from 'react-redux'
 import { changeSelected } from './Redux/selected'
@@ -20,7 +19,6 @@ function BeerList() {
   }
 
   return (
-    
       <Grid className='test'>
         <Grid.Row columns='equal'>
           <Grid.Column floated='left'>

@@ -7,8 +7,6 @@ export const fetchBrews = createAsyncThunk("brew/fetchBrews", () => {
     .then((data) => data);
 });
 
-
-
 export const brewsSlice = createSlice({
   name: 'brew',
   initialState: {

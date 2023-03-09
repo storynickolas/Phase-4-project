@@ -1,16 +1,12 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Card, Grid, Button, Rating } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
 import { v4 as uuid } from "uuid";
-import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom'
 
 function MyPage({ logOut, user }) {
-  const [myBeers, setMyBeers] = useState([])
-  const [form, setForm] = useState(true)
   const [edit, setEdit] = useState(true)
   const [selected, setSelected] = useState()
 
@@ -22,11 +18,9 @@ function MyPage({ logOut, user }) {
   const history = useHistory();
 
 
-  const { beers } = useSelector((state) => state.brew)
-  // const filtered = beers.filter(val => val.reviews.id === 1);
+  const { beers } = useSelector((state) => state.brew);
   const r = beers.filter(d => d.reviews.length > 0);
 
-  // const t = r.find(d => d.reviews.filter(c => c.find(item => item.user_id === 13)));
   const t = r.filter(d => d.reviews.some(f => f.user_id === user.id));
 
   function handleLogoutClick() {

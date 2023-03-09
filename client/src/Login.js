@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 import MyPage from "./MyPage";
 
 function Login({ onLogin, user, logOut }) {
@@ -35,7 +35,6 @@ function Login({ onLogin, user, logOut }) {
     {user ?  <MyPage logOut={logOut} user={user} /> :
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='white' textAlign='center'>
-        {/* <Image src='/logo.png' />  */}
         Log-in to your account
       </Header>
       <Form size='large' onSubmit={handleSubmit} >

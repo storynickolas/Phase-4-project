@@ -1,11 +1,9 @@
-
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react'
 
 
-function Navbar({ user, logOut }) {
+function Navbar({ user }) {
 
   return (
     <div>

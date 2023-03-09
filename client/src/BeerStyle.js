@@ -1,6 +1,5 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react'
-import { Card, Segment, Button, Grid, Image } from 'semantic-ui-react'
+import { Card, Grid } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from 'react-redux'
 import { changeSelected } from './Redux/selected'
@@ -8,11 +7,7 @@ import { changeSelected } from './Redux/selected'
 import { useHistory } from 'react-router-dom'
 
 function BeerStyle() {
-
-
   const { type } = useSelector((state) => state.type)
-  
-  console.log(type)
 
   const dispatch = useDispatch()
 
@@ -23,11 +18,7 @@ function BeerStyle() {
     dispatch(changeSelected(item))
   }
 
-
-
   return (
-    
-
       <Grid className='test'>
         <Grid.Row columns='equal'>
           <Grid.Column floated='left'>
@@ -41,12 +32,11 @@ function BeerStyle() {
                 </div>
               </Card>)}
           </Card.Group>
-
-           
           </Grid.Column>
           <Grid.Column floated='right'>
-     <img className='beers' src='https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' alt='beers'/>
-
+              <img className='beers' 
+                src='https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 
+                alt='beers'/>
           </Grid.Column>
         </Grid.Row>
       </Grid>

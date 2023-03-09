@@ -1,7 +1,6 @@
-
-import { Card, Segment, Divider, Grid, Image, Button } from 'semantic-ui-react'
+import { Card, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { changeSelected } from './Redux/selected'
 

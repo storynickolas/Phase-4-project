@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Grid, Image, Button } from 'semantic-ui-react'
+import { Card, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { Rating } from 'semantic-ui-react'
@@ -7,7 +7,7 @@ import { Rating } from 'semantic-ui-react'
 function Beer({user}) {
   const [newName, setNewName] = useState('')
   const [form, setForm] = useState(true)
-  const [edit, setEdit] = useState(false)
+
   const [rate, setRate] = useState(3)
 
   const { beers } = useSelector((state) => state.brew)
@@ -17,17 +17,14 @@ function Beer({user}) {
 
 
   function handleName(e) {
-    let newCity = e.target.value
-    setNewName(newCity)
+    let name = e.target.value
+    setNewName(name)
   }
 
-
-  function handleRating(e, data) {
+  function handleRating(data) {
     let rating = data.rating
     setRate(rating)
   }
-
-
 
   function handleAdd() {
     setForm(false)
@@ -52,7 +49,7 @@ function Beer({user}) {
       .then((r) => r.json())
       .then((review) => {
         setForm(true)
-        console.log(formData);
+        console.log(review);
       });
   }
 
