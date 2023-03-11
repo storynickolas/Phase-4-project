@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Label, Message, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import MyPage from "./MyPage";
 
 function Login({ onLogin, user, logOut }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +18,7 @@ function Login({ onLogin, user, logOut }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password, passwordConfirmation }),
+      body: JSON.stringify({ username, password }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
@@ -53,28 +52,17 @@ onChange={(e) => setUsername(e.target.value)}/>
             value={password}
 onChange={(e) => setPassword(e.target.value)}
           />
-          <Form.Input
-            fluid
-            icon='lock'
-            iconPosition='left'
-            placeholder='Password Confirmation'
-            type='password'
-            id="password_confirmation"
-            value={passwordConfirmation}
-onChange={(e) => setPasswordConfirmation(e.target.value)}
-          />
           <Button color='black' fluid size='large'>
             Login
-
           </Button>
-          
+       {errors ? <Message><Message.Header>{errors}</Message.Header></Message> : ''}          
         </Segment>
       </Form>
       <Message>
-        <h3>Not a Member?</h3>
+        <Message.Header>Not a Member?</Message.Header>
+        <br/>
       <Link to={`/signup`} style={{ color: 'white' }}><Button
       color='black'>Sign Up</Button></Link>
-        {/* New to us? <a href='#'>Sign Up</a> */}
       </Message>
     </Grid.Column>
     }

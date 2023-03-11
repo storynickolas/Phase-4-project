@@ -26,7 +26,9 @@ function Style() {
   return (
     <Grid className='test'>
     <Grid.Row columns='equal'>
+    {selected ?
       <Grid.Column floated='left'>
+      
       <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
       <Card >
                 <div className='test2'>
@@ -45,7 +47,7 @@ function Style() {
       <Button 
        color='black'
       >Return to Beer Styles</Button></Link>
-      </Grid.Column>
+      </Grid.Column>:  history.push(`/beerstyles`) }
       <Grid.Column floated='right'>
         <img className='beers' 
           src='https://images.pexels.com/photos/1267700/pexels-photo-1267700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' 

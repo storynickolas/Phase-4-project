@@ -19,5 +19,7 @@ Rails.application.routes.draw do
 
   patch "/reviews/:id", to: "reviews#update"
 
+  get "/me", to: "users#show"
+
   resources :users, only: [:index, :create, :destroy]
 end

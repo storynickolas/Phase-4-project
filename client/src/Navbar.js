@@ -23,7 +23,7 @@ function Navbar({ user }) {
       inverted color='white'
       >Beers Styles</Button></Link>
      {user ?
-     <Link to={`/login`} style={{ color: 'white' }}><Button
+     <Link to={`/mypage`} style={{ color: 'white' }}><Button
      inverted color='white'>My Beers</Button></Link>
      :
      <Link to={`/login`} style={{ color: 'white' }}><Button

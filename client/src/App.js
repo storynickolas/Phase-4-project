@@ -34,7 +34,15 @@ function App() {
     dispatch(fetchBrews());
     dispatch(fetchTypes());
     console.log('test')
-  }, [dispatch]);
+  }, [dispatch, ]);
+
+  useEffect(() => {
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
 
 
@@ -47,7 +55,6 @@ function App() {
 
   const logOut = (item) => {
     setUser(item)
-    history.push(`/`);
   }
 
 

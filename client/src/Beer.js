@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
 
 function Beer({user}) {
-
+  
   const { beers } = useSelector((state) => state.brew)
 
   let { id } = useParams();
@@ -19,9 +19,12 @@ function Beer({user}) {
   }
 
   return (
+    
     <Grid className='test'>
     <Grid.Row columns='equal'>
+   {selected ?
       <Grid.Column floated='left'>
+
         <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
           <Card >
             <div className='test2'>
@@ -59,7 +62,8 @@ function Beer({user}) {
                 >Return to Beer List
               </Button>
             </Link>
-        </Grid.Column>
+        </Grid.Column> :  history.push(`/beers`) }
+
       <Grid.Column floated='right'>
         <img 
           className='beers' 
@@ -68,7 +72,7 @@ function Beer({user}) {
         />
       </Grid.Column>
     </Grid.Row>
-    </Grid>
+    </Grid> 
   )
 }
 
