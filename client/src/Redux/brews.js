@@ -12,6 +12,13 @@ export const brewsSlice = createSlice({
   initialState: {
     beers: []
   },
+  reducers: {
+    add: (state, action) => {
+      const newBeers = state.beers
+      newBeers[action.payload.beer_id - 1].reviews.push(action.payload)
+      state.beers = newBeers
+    }
+  },
 
   extraReducers: {
     // handle async actions: pending, fulfilled, rejected (for errors)
@@ -24,5 +31,7 @@ export const brewsSlice = createSlice({
     },
   }
 })
+
+export const { add } = brewsSlice.actions
 
 export default brewsSlice.reducer

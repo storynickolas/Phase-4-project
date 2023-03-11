@@ -34,9 +34,11 @@ function Login({ onLogin, user, logOut }) {
   <Grid textAlign='center' verticalAlign='middle' className='test'>
     {user ?  <MyPage logOut={logOut} user={user} /> :
     <Grid.Column style={{ maxWidth: 450 }}>
-      <Header as='h2' color='white' textAlign='center'>
-        Log-in to your account
-      </Header>
+      <div className='test2'>
+              <h1> Log-in to your account</h1>
+              </div>
+    
+
       <Form size='large' onSubmit={handleSubmit} >
         <Segment stacked>
           <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' id="username" value={username}
@@ -55,14 +57,13 @@ onChange={(e) => setPassword(e.target.value)}
             fluid
             icon='lock'
             iconPosition='left'
-            placeholder='Password'
+            placeholder='Password Confirmation'
             type='password'
             id="password_confirmation"
             value={passwordConfirmation}
 onChange={(e) => setPasswordConfirmation(e.target.value)}
           />
-          
-          <Button color='white' fluid size='large'>
+          <Button color='black' fluid size='large'>
             Login
 
           </Button>
@@ -70,8 +71,9 @@ onChange={(e) => setPasswordConfirmation(e.target.value)}
         </Segment>
       </Form>
       <Message>
+        <h3>Not a Member?</h3>
       <Link to={`/signup`} style={{ color: 'white' }}><Button
-     inverted color='white'>Sign Up</Button></Link>
+      color='black'>Sign Up</Button></Link>
         {/* New to us? <a href='#'>Sign Up</a> */}
       </Message>
     </Grid.Column>

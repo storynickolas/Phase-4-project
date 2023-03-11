@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 
 function SignUp({ confirmUser }) {
   const [username, setUsername] = useState("");
@@ -25,38 +26,51 @@ function SignUp({ confirmUser }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          autoComplete="off"
+    <Grid textAlign='center' verticalAlign='middle' className='test'>
+
+    <Grid.Column style={{ maxWidth: 450 }}>
+      <div className='test2'>
+              <h1> Sign Up </h1>
+              </div>
+    <Form size='large' onSubmit={handleSubmit} >
+        <Segment stacked>
+        <Form.Input 
+          fluid icon='user' 
+          iconPosition='left' 
+          placeholder='Username' 
+          id="username" 
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-        />
-        <label htmlFor="password">Password Confirmation</label>
-        <input
-          type="password"
-          id="password_confirmation"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          autoComplete="current-password"
-        />
-          <button type="submit">Sign Up</button>
+        <Form.Input
+            fluid
+            icon='lock'
+            iconPosition='left'
+            placeholder='Password'
+            type='password'
+            id="password"
+            value={password}
+onChange={(e) => setPassword(e.target.value)}
+          />
+        <Form.Input
+            fluid
+            icon='lock'
+            iconPosition='left'
+            placeholder='Password Confirmation'
+            type='password'
+            id="password_confirmation"
+            value={passwordConfirmation}
+onChange={(e) => setPasswordConfirmation(e.target.value)}
+          />
+          <Button color='black' fluid size='large'>
+            Sign Up
 
-        {/* <Link to={`/login2`} style={{ color: 'white' }}><button type="submit">Sign Up</button></Link> */}
-      </form>
-    </div>
+          </Button>
+    </Segment>
+      </Form>
+    </Grid.Column>
+    
+  </Grid>
   );
 }
 

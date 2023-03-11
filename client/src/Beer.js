@@ -2,57 +2,20 @@ import React, { useState } from 'react';
 import { Card, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'
-import { Rating } from 'semantic-ui-react'
 import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 function Beer({user}) {
-  const [newName, setNewName] = useState('')
-  const [form, setForm] = useState(true)
-  
-
-  const [rate, setRate] = useState(3)
 
   const { beers } = useSelector((state) => state.brew)
 
   let { id } = useParams();
   const [selected] = useState(beers[id - 1])
 
-
-  function handleName(e) {
-    let name = e.target.value
-    setNewName(name)
-  }
-
-  function handleRating(data) {
-    let rating = data.rating
-    setRate(rating)
-  }
+  const history = useHistory();
 
   function handleAdd() {
-    setForm(false)
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    let formData = {
-      user_id: user.id,
-      beer_id: selected.id,
-      rating: rate,
-      review: newName
-    }
-    fetch("http://localhost:4000/reviews", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((r) => r.json())
-      .then((review) => {
-        setForm(true)
-        console.log(review);
-      });
+    history.push(`/beers/${id}/edit`);
   }
 
   return (
@@ -81,38 +44,14 @@ function Beer({user}) {
                 </div> 
           </Card> )
           : ''}
-
-          {form ? <Card>
+          {user ? <Card>
             <Button 
               color='black'
               onClick={handleAdd}
               >Add A Review
             </Button>
             </Card>
-            : 
-            <Card>
-              <div className='test2'>
-              <h4>Your Review</h4>
-              <div>
-                <label>Review: </label>
-                <div className='test9'>
-              <input defaultValue={'Add a Review'} onChange={handleName}/> 
-              </div>
-              </div>
-              <div>
-                <label>Rating: </label>
-                <div className='test9'>
-                  <Rating icon='star' defaultRating={3} maxRating={5} onRate={handleRating} />
-                </div>
-                
-              </div>
-                <Button 
-                color='black'
-                onClick={handleSubmit}
-                >Add Review
-                </Button>
-                </div>
-            </Card>}
+            : '' }
           </Card.Group>
             <Link to={`/beers`} style={{ color: 'white' }}>
               <Button

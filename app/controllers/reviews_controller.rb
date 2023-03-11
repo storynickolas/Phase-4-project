@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   skip_before_action :authorized
+  # , only: :show, :index
 
     def show
       review = Review.where(:id => params[:id])
@@ -18,22 +19,22 @@ class ReviewsController < ApplicationController
 
     def destroy
       review = Review.find_by(id: params[:id])
-      # if user
+      if review
         review.destroy
         head :no_content
-      # else
-      #   render_not_found_response
-      # end
+      else
+        render_not_found_response
+      end
     end
 
     def update
       review = Review.find_by(id: params[:id])
-      # if spice
+      if review
         review.update(review_params)
         render json: review
-      # else
-      #   render_not_found_response
-      # end
+      else
+        render_not_found_response
+      end
     end
 
     private

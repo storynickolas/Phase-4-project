@@ -29,7 +29,7 @@ function MyPage({ logOut, user }) {
         logOut(null);
       }
     });
-    history.push(`/`);
+    history.push(`/login`);
   }
 
   function handleName(e) {

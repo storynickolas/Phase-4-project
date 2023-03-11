@@ -5,6 +5,7 @@ import BeerList from './BeerList';
 import Navbar from './Navbar';
 import BeerStyle from './BeerStyle';
 import Style from './Style';
+import Review from './Review';
 
 
 import Home from './Home';
@@ -32,6 +33,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchBrews());
     dispatch(fetchTypes());
+    console.log('test')
   }, [dispatch]);
 
 
@@ -70,6 +72,9 @@ function App() {
             </Route>
             <Route exact path='/beers/:id'>
               <Beer user={user} />
+            </Route>
+            <Route exact path='/beers/:id/edit'>
+              <Review user={user} />
             </Route>
             <Route exact path="/beerstyles">
               <BeerStyle />
