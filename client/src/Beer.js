@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Grid, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux'

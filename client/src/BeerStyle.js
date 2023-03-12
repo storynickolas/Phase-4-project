@@ -22,7 +22,7 @@ function BeerStyle() {
             {type.map((item) => 
               <Card key={uuid()}>
                 <div className='test2'>
-                <button className='test7' onClick={() => handleTest(item, type)}>
+                <button className='test3' onClick={() => handleTest(item, type)}>
                     <h3>{item.style.toUpperCase()}</h3>
                   </button>
                 </div>

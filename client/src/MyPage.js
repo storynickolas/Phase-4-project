@@ -1,37 +1,24 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Card, Grid, Button, Rating } from 'semantic-ui-react'
+import { Card, Grid, Button } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
 import { v4 as uuid } from "uuid";
-import { remove } from './Redux/brews'
-import { useDispatch } from "react-redux";
 
 import { useHistory } from 'react-router-dom'
 
 function MyPage({ logOut, user }) {
-
-
-
+  const [t, setT] = useState()
 
   const history = useHistory();
 
-
-  const dispatch = useDispatch();
-
-const [t, setT] = useState()
   let { beers } = useSelector((state) => state.brew);
 
-
-
-    
-
     useEffect(() => {
-      let car = [...beers]
-        let cow = car.filter(d => d.reviews !== [])
-        console.log(cow)
-        let donkey = car.filter(d => d.reviews.some(f => f.user_id === user.id))
-        setT(donkey)
-    }, [beers])
+      let myBeers = [...beers]
+      myBeers = myBeers.filter(d => d.reviews !== [])
+      myBeers = myBeers.filter(d => d.reviews.some(f => f.user_id === user.id))
+      setT(myBeers)
+    }, [beers, user])
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -48,21 +35,21 @@ const [t, setT] = useState()
   }
 
   return (
-    
-
       <Grid className='test'>
         <Grid.Row columns='equal'>
           <Grid.Column floated='center'>
           <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
           <Card>
-              <div className='test2'>
-                <h1>
-                  MY BEERS
-                </h1>
-                <Button inverted color='white' onClick={() => handleLogoutClick()}>Log Out</Button> 
-                
-                </div>
-                </Card>
+            <div className='test2'>
+              <h1>MY BEERS</h1>
+              <Button 
+                inverted 
+                color='white' 
+                onClick={() => handleLogoutClick()}>
+                  Log Out
+              </Button> 
+            </div>
+          </Card>
           { t ?
             t.map((item) => 
               <Card key={uuid()}>
@@ -73,7 +60,6 @@ const [t, setT] = useState()
                 <div>
                 <h2>{tool.rating}/5</h2>
                 <h3>{tool.review}</h3>
-                {/* <Button inverted color='white' onClick={() => handleDelete(tool)}>Delete</Button>  */}
                 <Button inverted color='white' onClick={(e) => handleEdit(e, tool)}>Edit/Remove</Button> 
                 </div> : '')}
               </div>

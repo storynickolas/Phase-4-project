@@ -29,9 +29,9 @@ function Edit({ user }) {
   const t = r.filter(d => d.reviews.some(f => f.user_id === user.id));
 
   let selected = t.filter(d => d.reviews.some(f => f.id === id));
-  selected = selected[0].reviews
+  selected = selected[0]
   let myreview = selected.reviews
-  myreview = myreview.filter(d => d.id === id)
+  myreview = selected.reviews.filter(d => d.id === id)
   myreview = myreview[0]
 
   function handleName(e) {
@@ -44,8 +44,7 @@ function Edit({ user }) {
     setRate(rating.rating)
   }
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  function handleSubmit() {
     fetch(`http://localhost:4000/reviews/${id}`, {
       method: "PATCH",
       headers: {
@@ -64,8 +63,7 @@ function Edit({ user }) {
       })
   }        
 
-  function handleDelete(e, myreview) {
-    e.preventDefault()
+  function handleDelete(myreview) {
     fetch(`http://localhost:4000/reviews/${myreview.id}`, {
       method: "DELETE",
     }).then((r) => {
@@ -75,7 +73,6 @@ function Edit({ user }) {
     }).then(
       history.push(`/mypage`)
     );
-
   }
 
   
@@ -101,8 +98,8 @@ function Edit({ user }) {
                   <label>Rating: </label>
                   <Rating icon='star' defaultRating={myreview.rating} maxRating={5} onRate={(e, {rating}) => handleRating(e, {rating})} />
                 </div>
-                <Button inverted color='white' onClick={(e) => handleSubmit(e)}>Done</Button>
-                <Button inverted color='white' onClick={(e) => handleDelete(e, myreview)}>Delete</Button> 
+                <Button inverted color='white' onClick={() => handleSubmit()}>Done</Button>
+                <Button inverted color='white' onClick={() => handleDelete(myreview)}>Delete</Button> 
               </div>
             </Card>
           </Card.Group>

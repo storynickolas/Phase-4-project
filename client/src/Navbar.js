@@ -9,7 +9,6 @@ function Navbar({ user }) {
     <div>
       <Link to={`/`} style={{ color: 'white' }}>
       <Button 
-     
       inverted color='white'
       >Home</Button></Link>
       <Link to={`/beers`} style={{ color: 'white' }}>

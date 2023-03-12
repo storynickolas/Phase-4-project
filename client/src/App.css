@@ -20,12 +20,12 @@
   min-height: 85vh;
 }
 
-.test3 {
+/* Home Page */
+.test5 {
   background-image: url("https://images.pexels.com/photos/5530253/pexels-photo-5530253.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 85vh;
-  /* min-height: 1000px; */
 }
 
 .test4 {
@@ -37,19 +37,14 @@
   padding-top: 10%;
 }
 
+/* Testing */
 .test2 {
   background-color: black;
   color: white;
   padding: 10px;
 }
 
-.test9 {
-  background-color: white;
-  color: black;
-  padding: 10px;
-}
-
-.test7 {
+.test3 {
   background-color: black;
   color: white;
   padding: 10px;

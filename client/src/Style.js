@@ -37,7 +37,7 @@ function Style() {
         </Card>
         {result.length > 0 ? result.map((item) => 
                   <Card><div className='test2' key={item.id}>
-                    <button className='test7' onClick={() => handleTest(item)}>
+                    <button className='test3' onClick={() => handleTest(item)}>
                         <h2>{item.name.toUpperCase()}</h2>
                         <h4>{item.brewery.toUpperCase()} BREWING</h4>
                         </button>

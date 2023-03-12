@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Grid, Label, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Message, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import MyPage from "./MyPage";
 
@@ -7,12 +7,9 @@ function Login({ onLogin, user, logOut }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsLoading(true);
     fetch("/login", {
       method: "POST",
       headers: {
@@ -20,7 +17,6 @@ function Login({ onLogin, user, logOut }) {
       },
       body: JSON.stringify({ username, password }),
     }).then((r) => {
-      setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
