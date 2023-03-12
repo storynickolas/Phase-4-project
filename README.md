@@ -1,5 +1,7 @@
 # Beer Rating: React/Rails API APP
 
+![Sample Page](https://github.com/storynickolas/phase-4-project/blob/main/Sample%20Page.png)
+
 ## Description
 
 This project allows a user to view ratings and reviews on various made up craft beers generated using the Faker API.  On login or signup the user is able to create, edit, and remove their own reviws that will populate the list alongside the existing reviews.
