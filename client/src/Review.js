@@ -38,6 +38,7 @@ function Review({user}) {
   function handleSubmit(e) {
     e.preventDefault();
     let formData = {
+      id,
       user_id: user.id,
       beer_id: selected.id,
       rating: rate,
@@ -61,7 +62,9 @@ function Review({user}) {
   return (
     <Grid className='test'>
     <Grid.Row columns='equal'>
+      {selected ?
       <Grid.Column floated='left'>
+      
         <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
           <Card >
             <div className='test2'>
@@ -101,7 +104,7 @@ function Review({user}) {
                 >Return to Beer List
               </Button>
             </Link>
-        </Grid.Column>
+        </Grid.Column> : history.push(`/beers/${id}`)}
       <Grid.Column floated='right'>
         <img 
           className='beers' 

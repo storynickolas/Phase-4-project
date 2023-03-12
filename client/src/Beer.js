@@ -15,7 +15,7 @@ function Beer({user}) {
   const history = useHistory();
 
   function handleAdd() {
-    history.push(`/beers/${id}/edit`);
+    history.push(`/beers/${id}/add`);
   }
 
   return (

@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import BeerStyle from './BeerStyle';
 import Style from './Style';
 import Review from './Review';
+import Edit from './Edit';
 
 
 import Home from './Home';
@@ -80,7 +81,7 @@ function App() {
             <Route exact path='/beers/:id'>
               <Beer user={user} />
             </Route>
-            <Route exact path='/beers/:id/edit'>
+            <Route exact path='/beers/:id/add'>
               <Review user={user} />
             </Route>
             <Route exact path="/beerstyles">
@@ -91,6 +92,9 @@ function App() {
             </Route>
             <Route exact path='/mypage'>
               <MyPage logOut={logOut} user={user} />
+            </Route>
+            <Route exact path='/review/:id/edit'>
+              <Edit logOut={logOut} user={user} />
             </Route>
           </Switch>
     </div>

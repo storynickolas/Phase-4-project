@@ -17,6 +17,18 @@ export const brewsSlice = createSlice({
       const newBeers = state.beers
       newBeers[action.payload.beer_id - 1].reviews.push(action.payload)
       state.beers = newBeers
+    },
+    remove: (state, action) => {
+      let newBeers = [...state.beers]
+      let review = newBeers[action.payload.beer_id - 1].reviews.map(e => e.id).indexOf(action.payload.id)
+      newBeers[action.payload.beer_id - 1].reviews.splice(review, 1)
+      state.beers = newBeers
+    },
+    revise: (state, action) => {
+      let newBeers = [...state.beers]
+      let review = newBeers[action.payload.beer_id - 1].reviews.map(e => e.id).indexOf(action.payload.id)
+      newBeers[action.payload.beer_id - 1].reviews[review] = action.payload
+      state.beers = newBeers
     }
   },
 
@@ -32,6 +44,6 @@ export const brewsSlice = createSlice({
   }
 })
 
-export const { add } = brewsSlice.actions
+export const { add, remove, revise } = brewsSlice.actions
 
 export default brewsSlice.reducer
