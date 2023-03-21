@@ -20,4 +20,10 @@ class BeersController < ApplicationController
     end
   end
 
+  # def highRating
+
+  #   beers = Beer.where()
+
+  # end
+
 end

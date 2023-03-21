@@ -1,16 +1,14 @@
 class ReviewsController < ApplicationController
-  skip_before_action :authorized
-  # , only: :show, :index
 
-    def show
-      review = Review.where(:id => params[:id])
-      render json: review
-    end
+    # def show
+    #   review = Review.where(:id => params[:id])
+    #   render json: review
+    # end
 
-    #GET /Review
-    def index
-      render json: Review.all
-    end
+    # #GET /Review
+    # def index
+    #   render json: Review.all
+    # end
 
     def create
       review = Review.create(review_params)
