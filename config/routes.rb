@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "/styles", to: "beers#style"
   get "/styles/:style", to: "beers#beers"
   get "/beers", to: "beers#index"
+  post '/beers', to: 'beers#create'
+  delete "/beers/:id", to: "beers#destroy"
 
   patch "/reviews/:id", to: "reviews#update"
   delete "/reviews/:id", to: "reviews#destroy"

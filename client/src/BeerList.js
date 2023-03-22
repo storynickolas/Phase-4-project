@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid } from 'semantic-ui-react'
+import { Button, Card, Grid } from 'semantic-ui-react'
 import { v4 as uuid } from "uuid";
 import { useSelector } from 'react-redux'
 
@@ -8,22 +8,20 @@ import { useHistory } from 'react-router-dom'
 
 function BeerList() {
   const { beers } = useSelector((state) => state.brew)
+  console.log(beers)
 
   const history = useHistory();
-
-  function handleTest(item) {
-    history.push(`/beers/${item.id}`);
-  }
 
   return (
       <Grid className='test'>
         <Grid.Row columns='equal'>
           <Grid.Column floated='left'>
             <Card.Group centered style={{margin: 50, color: 'red' }} itemsPerRow={1}>
+            <Button onClick={() =>  history.push(`/beers/add`)}>Add A Beer</Button>
               {beers.map((item) => 
                 <Card key={uuid()}>
                   <div className='test2'>
-                    <button className='test3' onClick={() => handleTest(item)}>
+                    <button className='test3' onClick={() => history.push(`/beers/${item.id}`)}>
                         <h3>{item.name.toUpperCase()}</h3>
                     </button>
                   </div>

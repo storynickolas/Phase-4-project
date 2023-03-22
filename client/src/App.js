@@ -7,6 +7,7 @@ import BeerStyle from './BeerStyle';
 import Style from './Style';
 import Review from './Review';
 import Edit from './Edit';
+import BeerForm from './BeerForm';
 
 
 import Home from './Home';
@@ -81,6 +82,9 @@ function App() {
             </Route>
             <Route exact path="/beers">
               <BeerList />
+            </Route>
+            <Route exact path="/beers/add">
+              <BeerForm />
             </Route>
             <Route exact path='/beers/:id'>
               <Beer user={user} />
