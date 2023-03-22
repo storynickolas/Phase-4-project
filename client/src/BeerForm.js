@@ -2,17 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import { Card, Grid, Button, Input, Dropdown } from 'semantic-ui-react'
 import { useSelector } from 'react-redux'
-import { remove } from './Redux/brews'
-import { revise } from './Redux/brews'
-
-import { useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
 import { useHistory } from 'react-router-dom'
 
 import { addBeer } from './Redux/brews'
 
-function BeerForm({ user }) {
+function BeerForm( ) {
 
   const [newName, setNewName] = useState('')
   const [newStyle, setNewStyle] = useState('')
@@ -23,12 +19,9 @@ function BeerForm({ user }) {
 
   const history = useHistory();
 
-
   const dispatch = useDispatch();
 
   const { beers } = useSelector((state) => state.brew);
-
-  const [newid, setNewid] = useState(beers.length)
 
   const { type } = useSelector((state) => state.type)
   
