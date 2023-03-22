@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   patch "/reviews/:id", to: "reviews#update"
   delete "/reviews/:id", to: "reviews#destroy"
-  post "/reviews/add", to: "reviews#create"
+  post "/reviews", to: "reviews#create"
 
   get "/me", to: "users#show"
 

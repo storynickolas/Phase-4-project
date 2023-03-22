@@ -44,7 +44,7 @@ function Review({user}) {
       rating: rate,
       review: newName
     }
-    fetch("http://localhost:4000/reviews/add", {
+    fetch("http://localhost:4000/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
