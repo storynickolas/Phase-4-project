@@ -1,6 +1,5 @@
 class BeersController < ApplicationController
-  skip_before_action :authorized
-
+  skip_before_action :authorized, only: [:index, :beers, :style, :destroy, :highRating]
 
   def index
     render json: Beer.all
@@ -40,11 +39,23 @@ class BeersController < ApplicationController
   end
 
 
-  # def highRating
-
-  #   beers = Beer.where()
-
-  # end
+  def highRating
+    respectable = []
+    beers = Beer.all
+    beers.each do |n|
+      rating = []
+      if n.reviews.length > 0
+        n.reviews.each do |n|
+          rating.push(n.rating)
+        end
+        aRate = rating.sum / rating.length
+        if aRate >= 3
+          respectable.push(n)
+        end
+      end
+    end
+    render json: respectable
+  end
 
   private
   # all methods below here are private

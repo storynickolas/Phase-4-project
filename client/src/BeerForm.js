@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 
 import { useHistory } from 'react-router-dom'
 
+import { addBeer } from './Redux/brews'
+
 function BeerForm({ user }) {
 
   const [newName, setNewName] = useState('')
@@ -65,7 +67,7 @@ function BeerForm({ user }) {
     let newBeer = {
       abv: abv,
       brewery: brewery,
-      id: 11,
+      id: beers.length + 1,
       name: newName,
       reviews: [],
       style: newStyle
@@ -88,10 +90,9 @@ function BeerForm({ user }) {
         }
         else {
           setStatus(['Successfully Added'])
+          dispatch(addBeer(response));
           console.log(response)
         }
-        // dispatch(revise(response));
-        // history.push(`/mypage`);
       })
   }        
   
@@ -152,18 +153,23 @@ function BeerForm({ user }) {
               {status[0] !== 'Successfully Added' ?
               <div>
                 {status.map((item) => 
-                <h5>{item}</h5>
+                <h2>{item}</h2>
                 )}
               </div>
               :
               <div>
                 {status.map((item) => 
-                <h5>{item}</h5>
+                <h2>{item}</h2>
                 )}
-                <Button onClick={() => handleReset()}>Add Another</Button>
+                <Button inverted color='white' onClick={() => handleReset()}>Add Another</Button>
               </div>
               }
             </div>
+            </Card>
+            <Card>
+              <Button  onClick={() => history.push(`/beers`)}>
+                <h1> Return to Beers</h1>
+              </Button>
             </Card>
           </Card.Group>
           </Grid.Column>

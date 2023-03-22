@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post '/beers', to: 'beers#create'
   delete "/beers/:id", to: "beers#destroy"
 
+  get "/beers/high", to: "beers#highRating"
+
   patch "/reviews/:id", to: "reviews#update"
   delete "/reviews/:id", to: "reviews#destroy"
   post "/reviews/add", to: "reviews#create"
