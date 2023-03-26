@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  skip_before_action :authorized, only: [:index, :beers, :style, :destroy, :highRating]
+  skip_before_action :authorized, only: [:index, :beers, :style, :highRating]
 
   def index
     render json: Beer.all
@@ -19,26 +19,6 @@ class BeersController < ApplicationController
     end
   end
 
-  def create
-    beer = Beer.create(beer_params)
-    if beer.valid?
-      render json: beer, status: :created
-    else
-      render json: { errors: beer.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    beer = Beer.find_by(id: params[:id])
-    if beer
-      beer.destroy
-      head :no_content
-    else
-      render_not_found_response
-    end
-  end
-
-
   def highRating
     respectable = []
     beers = Beer.all
@@ -55,6 +35,29 @@ class BeersController < ApplicationController
       end
     end
     render json: respectable
+  end
+
+  #Require Login
+
+  def create
+    beer = Beer.create(beer_params)
+    if beer.valid?
+      render json: beer, status: :created
+    else
+      render json: { errors: beer.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    beer = Beer.find_by(id: params[:id])
+    if beer.user_id == session[:user_id]
+      beer.destroy
+      head :no_content
+    elsif beer
+      render json: {errors: ["Not Authorized"]}, status: :unauthorized
+    else
+      render json: {errors: ["Beer Does Not Exist"]}, status: :not_found
+    end
   end
 
   private
