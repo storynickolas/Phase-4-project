@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :review_owner
-  skip_before_action :review_owner, only: [:index]
+  skip_before_action :review_owner, only: [:index, :create]
   #Test Functions
 
     def show
