@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   delete "/reviews/:id", to: "reviews#destroy"
   post "/reviews", to: "reviews#create"
 
+  get "/reviews/:id", to: "reviews#show"
+
   get "/me", to: "users#show"
+
+  get "/users", to: "users#index"
 
   resources :users, only: [:create, :destroy]
 end
