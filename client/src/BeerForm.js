@@ -34,7 +34,6 @@ function BeerForm( ) {
   })
 
   function handleName(e, name) {
-    e.preventDefault();
     setNewName(e.target.value)
   }
 

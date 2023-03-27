@@ -50,11 +50,9 @@ class BeersController < ApplicationController
 
   def destroy
     beer = Beer.find_by(id: params[:id])
-    if beer.user_id == session[:user_id]
+    if beer 
       beer.destroy
       head :no_content
-    elsif beer
-      render json: {errors: ["Not Authorized"]}, status: :unauthorized
     else
       render json: {errors: ["Beer Does Not Exist"]}, status: :not_found
     end
